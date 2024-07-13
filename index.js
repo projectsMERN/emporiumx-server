@@ -36,6 +36,7 @@ server.use(cors({
   origin: '*',  // Allows requests from any origin
   methods: 'GET,POST,PUT,DELETE,OPTIONS',
   allowedHeaders: 'Content-Type,Authorization',
+  credentials: true,  // Allows credentials (cookies, HTTP authentication) to be included in requests
 }));
 
 // Stripe webhook
