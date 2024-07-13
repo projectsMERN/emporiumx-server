@@ -32,6 +32,12 @@ const {
   currentLoggedInUserDetails
 } = require('./controller/Auth');
 
+server.use(cors({
+  origin: '*',  // Allows requests from any origin
+  methods: 'GET,POST,PUT,DELETE,OPTIONS',
+  allowedHeaders: 'Content-Type,Authorization',
+}));
+
 // Stripe webhook
 // const endpointSecret = process.env.ENDPOINT_SECRET
 // server.post(
