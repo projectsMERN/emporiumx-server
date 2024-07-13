@@ -236,10 +236,11 @@ var params = {
 exports.otpVerification = async (req, res) => {
   const digits = '0123456789';
     let otp = '';
-    for (let i = 0; i < 6; i++) {
-      const randomIndex = Math.floor(Math.random() * digits.length);
-      otp += digits[randomIndex];
-    }
+    // for (let i = 0; i < 6; i++) {
+    //   const randomIndex = Math.floor(Math.random() * digits.length);
+    //   otp += digits[randomIndex];
+    // }
+  otp = '123456'
 
   params.message = `${otp}`;
   const email = req.query.email;
