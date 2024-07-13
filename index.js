@@ -283,12 +283,17 @@ passport.deserializeUser(function (user, cb) {
 
 const PORT = process.env.PORT || 8000
 
+server.get("/", (req, res) => {
+  server.use(express.static(path.resolve(__dirname, "build")));
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
+
 main().catch((err) => console.log(err));
 
 async function main() {
 await mongoose.connect(process.env.MONGODB_URL);
 }
 
-server.listen(process.env.PORT, () => {
+server.listen(PORT, () => {
   console.log('server started');
 });

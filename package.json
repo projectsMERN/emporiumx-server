@@ -2,13 +2,10 @@
   "name": "mern-ecommerce-backend-main",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "client-install": "cd client && npm install --force",
-    "client-build": "cd client && npm run build",
-    "heroku-postbuild": "npm run client-install && client-build"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +25,7 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "springedge": "^1.0.6",
     "stripe": "^15.8.0"
   }
