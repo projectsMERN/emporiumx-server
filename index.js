@@ -78,7 +78,6 @@ opts.jwtFromRequest = cookieExtractor
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 //middlewares
-server.use(express.static(path.resolve(__dirname, 'build')));
 server.use(cookieParser());
 server.use(
   session({
@@ -283,10 +282,13 @@ passport.deserializeUser(function (user, cb) {
 
 const PORT = process.env.PORT || 8000
 
-// server.get("/", (req, res) => {
-//   server.use(express.static(path.resolve(__dirname, "build")));
-//   res.sendFile(path.resolve(__dirname, "build", "index.html"));
-// });
+// Serve static files from the React app
+server.use(express.static(path.join(__dirname, 'build')));
+
+// Fallback to `index.html` for any other routes
+server.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 
 main().catch((err) => console.log(err));
 
