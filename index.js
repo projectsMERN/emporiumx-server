@@ -290,12 +290,12 @@ passport.deserializeUser(function (user, cb) {
 const PORT = process.env.PORT || 8000
 
 // Serve static files from the React app
-server.use(express.static(path.join(__dirname, 'build')));
+// server.use(express.static(path.join(__dirname, 'build')));
 
 // Fallback to `index.html` for any other routes
-server.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
+// server.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+// });
 
 main().catch((err) => console.log(err));
 
