@@ -32,12 +32,12 @@ const {
   currentLoggedInUserDetails
 } = require('./controller/Auth');
 
-server.use(cors({
-  origin: '*',  // Allows requests from any origin
-  methods: 'GET,POST,PUT,DELETE,OPTIONS',
-  allowedHeaders: 'Content-Type,Authorization',
-  credentials: true,  // Allows credentials (cookies, HTTP authentication) to be included in requests
-}));
+const corsOptions = {
+  origin: true,
+  credentials: true, // Allow cookies to be sent
+};
+
+server.use(cors(corsOptions));
 
 // Stripe webhook
 // const endpointSecret = process.env.ENDPOINT_SECRET
@@ -85,6 +85,7 @@ opts.jwtFromRequest = cookieExtractor
 opts.secretOrKey = process.env.JWT_SECRET_KEY;
 
 //middlewares
+server.use(express.static(path.resolve(__dirname, 'build')));
 server.use(cookieParser());
 server.use(
   session({
@@ -288,14 +289,6 @@ passport.deserializeUser(function (user, cb) {
 // });
 
 const PORT = process.env.PORT || 8000
-
-// Serve static files from the React app
-server.use(express.static(path.resolve(__dirname, 'build')));
-
-// Fallback to `index.html` for any other routes
-// server.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-// });
 
 main().catch((err) => console.log(err));
 
