@@ -66,10 +66,10 @@ async function generateAccessToken() {
 }
 
 // Function to fetch employee records from Zoho
-async function fetchEmployeeRecords(accessToken) {
+async function fetchEmployeeRecords(accessToken, sIndex = 0) {
   const recordsResponse = await axios.get('https://people.zoho.in/people/api/forms/employee/getRecords', {
     params: {
-      sIndex: 0,
+      sIndex: sIndex,
       limit: 200
     },
     headers: {
@@ -77,6 +77,24 @@ async function fetchEmployeeRecords(accessToken) {
     }
   });
   return recordsResponse.data.response.result;
+}
+
+// Helper function to fetch all employee records in batches
+async function fetchAllEmployeeRecords(accessToken) {
+  let allRecords = [];
+  let sIndex = 0;
+  let hasMoreRecords = true;
+
+  while (hasMoreRecords) {
+    const recordsBatch = await fetchEmployeeRecords(accessToken, sIndex);
+    allRecords = allRecords.concat(recordsBatch);
+    sIndex += 200;
+    if (recordsBatch.length < 200) {
+      hasMoreRecords = false;
+    }
+  }
+
+  return allRecords;
 }
 
 // Function to get email by official name from Zoho records
@@ -94,9 +112,39 @@ exports.loginUser = async (req, res) => {
   const user = req.user;
 
   const userEmail = req.body.email;
+
+  if (userEmail === 'facilities.mumbai@tataplayfiber.com') {
+    // Allow direct access for this specific email
+    let user = await User.findOne({ email: userEmail });
+    const token = jwt.sign(sanitizeUser(user), process.env.JWT_SECRET_KEY);
+    res
+      .cookie('jwt', token, {
+        expires: new Date(Date.now() + 3600000),
+        httpOnly: true,
+      })
+      .status(201)
+      .json({ email: userEmail, role: user.role, verified: true });
+    return;
+  }
+
+  const loginFromDB = await User.findOne({ email: userEmail });
+  if(loginFromDB) {
+    let user = await User.findOne({ email: userEmail });
+    const token = jwt.sign(sanitizeUser(user), process.env.JWT_SECRET_KEY);
+    res
+      .cookie('jwt', token, {
+        expires: new Date(Date.now() + 3600000),
+        httpOnly: true,
+      })
+      .status(201)
+      .json({ email: userEmail, role: user.role, verified: true });
+    return;
+  }
+
   // ---Zoho connection
   const accessToken = await generateAccessToken();
-    const employeeRecords = await fetchEmployeeRecords(accessToken);
+    // const employeeRecords = await fetchEmployeeRecords(accessToken);
+    const employeeRecords = await fetchAllEmployeeRecords(accessToken);
 
     const emailFromZoho = getEmailByOfficialName(employeeRecords, userEmail);
     if (!emailFromZoho) {
@@ -107,6 +155,9 @@ exports.loginUser = async (req, res) => {
       const userDetails = exports.currentLoggedInUserDetails(employeeRecords, emailFromZoho);
 
       const searchEmailInDB = await User.findOne({ email: emailFromZoho });
+
+      // console.log();
+
 
       if(searchEmailInDB) {       
         // Update the user's address if the addresses array is null or empty
@@ -120,8 +171,18 @@ exports.loginUser = async (req, res) => {
             state: userDetails.Work_location,
             pinCode: userDetails.Current_Pincode
           }];
-          searchEmailInDB.jobRole = userDetails.Expense_Policy1;
-          await searchEmailInDB.save();  // Save the user with updated addresses
+
+          const lowerValue = userDetails.Expense_Policy1.toLowerCase().trim();
+
+          if (lowerValue.includes('non field')) {
+            let jRole = 'nonField';
+            searchEmailInDB.jobRole = jRole;
+            await searchEmailInDB.save();
+          } else {
+            let jRole = 'field';
+            searchEmailInDB.jobRole = jRole;
+            await searchEmailInDB.save();
+          }
         }
 
         const generatedOtp = params.message
@@ -255,7 +316,7 @@ exports.otpVerification = async (req, res) => {
   const subject = 'Tata Play Ecom OTP verification';
   const html = `<p>You otp is: '${otp}'</p>`;
   console.log(otp)
-  // const response = await sendMail({ to: email, subject, html });
+  const response = await sendMail({ to: email, subject, html });
   
   // springedge.messages.send(params, 5000, function (err, response) {
   //   if (err) {
@@ -267,3 +328,4 @@ exports.otpVerification = async (req, res) => {
 exports.generateAccessToken = generateAccessToken;
 exports.fetchEmployeeRecords = fetchEmployeeRecords;
 exports.getEmailByOfficialName = getEmailByOfficialName;
+exports.fetchAllEmployeeRecords = fetchAllEmployeeRecords;
