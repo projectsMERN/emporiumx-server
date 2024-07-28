@@ -86,7 +86,7 @@ exports.fetchOrdersByUser = async (req, res) => {
       query = query.sort({ [req.query._sort]: req.query._order });
     }
   
-    const totalDocs = await totalOrdersQuery.count().exec();
+    const totalDocs = await totalOrdersQuery.countDocuments().exec();
   
     if (req.query._page && req.query._limit) {
       const pageSize = req.query._limit;
@@ -155,7 +155,7 @@ exports.exportUserOrders = async (req, res) => {
     query = query.sort({ [req.query._sort]: req.query._order });
   }
 
-  const totalDocs = await totalOrdersQuery.count().exec();
+  const totalDocs = await totalOrdersQuery.countDocuments().exec();
 
   if (req.query._page && req.query._limit) {
     const pageSize = req.query._limit;
