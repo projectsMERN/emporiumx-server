@@ -5,8 +5,6 @@ exports.fetchUserById = async (req, res) => {
   const { id } = req.user;
   try {
     const user = await User.findById(id);
-    console.log(user);
-    console.log("successfu status");
     res.status(200).json({id:user.id,addresses:user.addresses,email:user.email,role:user.role,verified:user.verified, jobRole:user.jobRole});
   } catch (err) {
     res.status(400).json(err);
