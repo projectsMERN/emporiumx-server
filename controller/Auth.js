@@ -139,10 +139,9 @@ exports.loginUser = async (req, res) => {
       .status(201)
       .json({ email: userEmail, role: user.role, verified: true });
     return;
-  }
-
-  // ---Zoho connection
-  const accessToken = await generateAccessToken();
+  } else {
+      // ---Zoho connection
+    const accessToken = await generateAccessToken();
     // const employeeRecords = await fetchEmployeeRecords(accessToken);
     const employeeRecords = await fetchAllEmployeeRecords(accessToken);
 
@@ -155,9 +154,6 @@ exports.loginUser = async (req, res) => {
       const userDetails = exports.currentLoggedInUserDetails(employeeRecords, emailFromZoho);
 
       const searchEmailInDB = await User.findOne({ email: emailFromZoho });
-
-      // console.log();
-
 
       if(searchEmailInDB) {       
         // Update the user's address if the addresses array is null or empty
@@ -201,6 +197,7 @@ exports.loginUser = async (req, res) => {
         return
       }
     }
+  }
 };
 
 exports.currentLoggedInUserDetails = (employeeRecords, emailFromZoho) => {
