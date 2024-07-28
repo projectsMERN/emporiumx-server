@@ -22,7 +22,6 @@ exports.createCategory = async (req, res) => {
 // New
 exports.fetchAllCategories = async (req, res) => {
   try {
-    console.log("inside categories")
     const categories = await Category.find({}).exec();
     res.status(200).json(categories);
   } catch (err) {
