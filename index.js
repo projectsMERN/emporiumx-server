@@ -185,6 +185,27 @@ passport.use(
         const token = jwt.sign(sanitizeUser(user), process.env.JWT_SECRET_KEY);
         return done(null, { id: user.id, role: user.role, token });
       }
+
+      let userInDB = await User.findOne({ email });
+      if(userInDB) {
+        crypto.pbkdf2(
+          password,
+          userInDB.salt,
+          310000,
+          32,
+          'sha256',
+          async function (err, hashedPassword) {
+            if (err) {
+              return done(err);
+            }
+            // if (!crypto.timingSafeEqual(user.password, hashedPassword)) {
+            //   return done(null, false, { message: 'Invalid credentials' });
+            // }
+            const token = jwt.sign(sanitizeUser(userInDB), process.env.JWT_SECRET_KEY);
+            done(null, { id: userInDB.id, role: userInDB.role, token });
+          }
+        );
+      }
       
       // Generate access token
       const accessToken = await generateAccessToken();
