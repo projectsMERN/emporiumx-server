@@ -128,7 +128,7 @@ exports.checkProductExistance = async (req, res) => {
   for(let i=0; i<length; i++) {
     let fetchProduct = allUserOrders[i].items[0].product.id;
     
-    if(fetchProduct === productId) {
+    if(fetchProduct === productId && allUserOrders[i].status!='cancelled') {
       productCount++;
     }
   }
