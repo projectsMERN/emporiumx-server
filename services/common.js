@@ -179,7 +179,7 @@ exports.invoiceTemplate = function(order){
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="center" valign="top" style="padding: 36px 24px;">
-              <a href="https://sendgrid.com" target="_blank" style="display: inline-block;">
+              <a href="" target="_blank" style="display: inline-block;">
                 <img src="https://www.tataplayfiber.com/themes/custom/tsb/logo.png" alt="Logo" border="0" width="148" style="display: block; width: 148px; max-width: 148px; min-width: 148px;">
               </a>
             </td>
@@ -482,7 +482,7 @@ exports.adminInvoiceTemplate = function(order, userEmail){
          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
            <tr>
              <td align="center" valign="top" style="padding: 36px 24px;">
-               <a href="https://sendgrid.com" target="_blank" style="display: inline-block;">
+               <a href="" target="_blank" style="display: inline-block;">
                  <img src="https://www.tataplayfiber.com/themes/custom/tsb/logo.png" alt="Logo" border="0" width="148" style="display: block; width: 148px; max-width: 148px; min-width: 148px;">
                </a>
              </td>
@@ -786,7 +786,7 @@ exports.adminInvoiceTemplate = function(order, userEmail){
          <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
            <tr>
              <td align="center" valign="top" style="padding: 36px 24px;">
-               <a href="https://sendgrid.com" target="_blank" style="display: inline-block;">
+               <a href="" target="_blank" style="display: inline-block;">
                  <img src="https://www.tataplayfiber.com/themes/custom/tsb/logo.png" alt="Logo" border="0" width="148" style="display: block; width: 148px; max-width: 148px; min-width: 148px;">
                </a>
              </td>
