@@ -1,16 +1,28 @@
 const passport = require('passport');
 const nodemailer = require('nodemailer');
 
-let transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 587,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: 'rishilshindework@gmail.com', // gmail
-    pass: process.env.MAIL_PASSWORD, // pass
-  },
-});
+// let transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: 587,
+//   secure: false, // true for 465, false for other ports
+//   auth: {
+//     user: 'rishilshindework@gmail.com', // gmail
+//     pass: process.env.MAIL_PASSWORD, // pass
+//   },
+// });
 
+const transporter = nodemailer.createTransport({
+  host: "smtp-mail.outlook.com",
+  port: 587, // port for TLS
+  secure: false, // use TLS
+  auth: {
+    user: "facilities.mumbai@tataplayfiber.com",
+    pass: process.env.MAIL_PASSWORD
+  },
+  tls: {
+    rejectUnauthorized: true // set to true if you trust the TLS certificates
+  }
+});
 
 exports.isAuth = (req, res, done) => {
   return passport.authenticate('jwt');
