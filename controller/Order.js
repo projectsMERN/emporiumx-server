@@ -27,9 +27,9 @@ exports.fetchOrdersByUser = async (req, res) => {
     }
 
     try {
-      const uniqueAppend = Math.random().toString().substring(2, 10);
+      const uniqueAppend = Math.random().toString().substring(2, 8);
       let obj = new Date(); 
-      let year = obj.getUTCFullYear(); 
+      let year = obj.getUTCFullYear() % 100; 
       let seconds = obj.getSeconds();
       const orderId = order.selectedAddress.city + "-" + year + "-" + uniqueAppend + seconds;
 
