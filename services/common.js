@@ -814,7 +814,7 @@ exports.adminInvoiceTemplate = function(order, userEmail){
              <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
                <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Your order is on the way</h1>
                <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Order Status: ${order.status}</h1>
-               <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Order Status: ${order.paymentStatus}</h1>
+               <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Track your Order: ${order.paymentStatus}</h1>
              </td>
            </tr>
          </table>
@@ -840,7 +840,7 @@ exports.adminInvoiceTemplate = function(order, userEmail){
            <!-- start copy -->
            <tr>
              <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-               <p style="margin: 0;">Beow are the tracking details for your order. If you have any questions or concerns about your order, please <a href="mailto:facilities.mumbai@tataplayfiber.com">contact us</a>.</p>
+               <p style="margin: 0;">Below are the tracking details for your order. If you have any questions or concerns about your order, please <a href="mailto:facilities.mumbai@tataplayfiber.com">contact us</a>.</p>
              </td>
            </tr>
            <!-- end copy -->
