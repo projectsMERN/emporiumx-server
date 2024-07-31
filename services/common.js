@@ -231,7 +231,7 @@ exports.invoiceTemplate = function(order){
           <!-- start copy -->
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-              <p style="margin: 0;">Here is a summary of your recent order. If you have any questions or concerns about your order, please <a href="https://www.tataplayfiber.com/contact-us">contact us</a>.</p>
+              <p style="margin: 0;">Here is a summary of your recent order. If you have any questions or concerns about your order, please <a href="mailto:facilities.mumbai@tataplayfiber.com">contact us</a>.</p>
             </td>
           </tr>
           <!-- end copy -->
@@ -534,7 +534,7 @@ exports.adminInvoiceTemplate = function(order, userEmail){
            <!-- start copy -->
            <tr>
              <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-               <p style="margin: 0;">Here is a summary of the recent order. If you have any questions or concerns about your order, please <a href="https://www.tataplayfiber.com/contact-us">contact us</a>.</p>
+               <p style="margin: 0;">Here is a summary of the recent order. If you have any questions or concerns about your order, please <a href="mailto:facilities.mumbai@tataplayfiber.com">contact us</a>.</p>
              </td>
            </tr>
            <!-- end copy -->
@@ -840,7 +840,7 @@ exports.adminInvoiceTemplate = function(order, userEmail){
            <!-- start copy -->
            <tr>
              <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-               <p style="margin: 0;">Beow are the tracking details for your order. If you have any questions or concerns about your order, please <a href="https://www.tataplayfiber.com/contact-us">contact us</a>.</p>
+               <p style="margin: 0;">Beow are the tracking details for your order. If you have any questions or concerns about your order, please <a href="mailto:facilities.mumbai@tataplayfiber.com">contact us</a>.</p>
              </td>
            </tr>
            <!-- end copy -->
