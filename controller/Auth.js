@@ -310,7 +310,7 @@ exports.otpVerification = async (req, res) => {
 
   // Send a confirmation mail to user
   const subject = 'Tata Play Ecom OTP verification';
-  const html = `<p>You otp is: '${otp}'</p>`;
+  const html = `<p>You OTP is: '${otp}'</p>`;
   console.log(otp)
   const response = await sendMail({ to: email, subject, html });
   
