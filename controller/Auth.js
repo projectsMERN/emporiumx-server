@@ -291,7 +291,7 @@ var params = {
   'apikey': '621492a44a89m36c2209zs4l7e74672cj', // API Key
   'sender': 'SEDEMO', // Sender Name
   'to': [
-    '918766659943'  //Moblie Number
+    '919167499609'  //Moblie Number
   ],
   'message': 'Hello, This is a test message from spring edge',
   'format': 'json'
