@@ -336,7 +336,10 @@ generateOTPHTML = function(otp){
     <hr style="border:none;border-top:1px solid #eee" />
     <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
       <p>Tata Play Fiber</p>
-      <p>Almeida Park, Bandra West, Mumbai, Maharashtra 400050</p>
+      <p>Tata Sky Broadband Pvt Ltd.</p>
+      <p>Unit No – 306, 3rd Floor, Windsor,</p>
+      <p>Off CST Road, Kalina, Santacruz – (East),</p>
+      <p>Mumbai 400098. Tel:02262404800</p>
       <p>India</p>
     </div>
   </div>
