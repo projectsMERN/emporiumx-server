@@ -68,7 +68,7 @@ exports.fetchOrdersByUser = async (req, res) => {
       //Send mail to the user
       const user = await User.findById(order.user)
       userEmail=user.email;
-      sendMail({to:userEmail,html:DeliveryStatus(order, userEmail),subject:'EmphoriumX- Delivery Status' })
+      sendMail({to:userEmail,html:DeliveryStatus(order, userEmail),subject:'ShopHub- Delivery Status' })
       res.status(200).json(order);
     } catch (err) {
       res.status(400).json(err);
