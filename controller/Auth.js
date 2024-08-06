@@ -330,7 +330,7 @@ generateOTPHTML = function(otp){
     <div style="border-bottom:1px solid #eee">
       <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">TATA PLAY FIBER</a>
     </div>
-    <p>Thank you for choosing EmphoriumX. Use the following OTP to complete your Login procedure.</p>
+    <p>Thank you for choosing ShopHub. Use the following OTP to complete your Login procedure.</p>
     <h2 style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">${otp}</h2>
     <p style="font-size:0.9em;">Regards,<br />Admin and Facilities</p>
     <hr style="border:none;border-top:1px solid #eee" />
